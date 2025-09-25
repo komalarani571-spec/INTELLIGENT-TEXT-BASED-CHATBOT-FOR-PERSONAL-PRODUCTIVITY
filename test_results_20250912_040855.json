@@ -1,0 +1,258 @@
+{
+  "nlp_tests": [
+    {
+      "test_id": "NLP_01",
+      "description": "Basic greeting recognition",
+      "input": "Hello, how can you help me?",
+      "expected_intent": "greeting",
+      "actual_intent": "help",
+      "confidence": 0.3333333333333333,
+      "intent_correct": false,
+      "response_generated": true,
+      "entities_extracted": false,
+      "sentiment_analyzed": true,
+      "status": "FAIL"
+    },
+    {
+      "test_id": "NLP_02",
+      "description": "Task creation intent",
+      "input": "Create a task to finish the project report",
+      "expected_intent": "task_creation",
+      "actual_intent": "task_creation",
+      "confidence": 0.78,
+      "intent_correct": true,
+      "response_generated": true,
+      "entities_extracted": false,
+      "sentiment_analyzed": true,
+      "status": "PASS"
+    },
+    {
+      "test_id": "NLP_03",
+      "description": "Meeting scheduling intent",
+      "input": "Schedule a meeting with John tomorrow at 2 PM",
+      "expected_intent": "schedule_meeting",
+      "actual_intent": "schedule_meeting",
+      "confidence": 0.825,
+      "intent_correct": true,
+      "response_generated": true,
+      "entities_extracted": true,
+      "sentiment_analyzed": true,
+      "status": "PASS"
+    },
+    {
+      "test_id": "NLP_04",
+      "description": "Reminder setting intent",
+      "input": "Remind me to call the client",
+      "expected_intent": "reminder",
+      "actual_intent": "reminder",
+      "confidence": 0.3428571428571428,
+      "intent_correct": true,
+      "response_generated": true,
+      "entities_extracted": true,
+      "sentiment_analyzed": true,
+      "status": "PASS"
+    },
+    {
+      "test_id": "NLP_05",
+      "description": "Productivity advice request",
+      "input": "Give me some productivity tips",
+      "expected_intent": "productivity_tips",
+      "actual_intent": "productivity_tips",
+      "confidence": 0.8571428571428571,
+      "intent_correct": true,
+      "response_generated": true,
+      "entities_extracted": false,
+      "sentiment_analyzed": true,
+      "status": "PASS"
+    },
+    {
+      "test_id": "NLP_06",
+      "description": "Time-related query",
+      "input": "What time is it?",
+      "expected_intent": "time_management",
+      "actual_intent": "time_management",
+      "confidence": 0.39999999999999997,
+      "intent_correct": true,
+      "response_generated": true,
+      "entities_extracted": false,
+      "sentiment_analyzed": true,
+      "status": "PASS"
+    },
+    {
+      "test_id": "NLP_07",
+      "description": "Help request",
+      "input": "What can you do for me?",
+      "expected_intent": "help",
+      "actual_intent": "unknown",
+      "confidence": 0.1,
+      "intent_correct": false,
+      "response_generated": true,
+      "entities_extracted": false,
+      "sentiment_analyzed": true,
+      "status": "FAIL"
+    },
+    {
+      "test_id": "NLP_08",
+      "description": "Farewell recognition",
+      "input": "Goodbye",
+      "expected_intent": "goodbye",
+      "actual_intent": "status_check",
+      "confidence": 0.3428571428571428,
+      "intent_correct": false,
+      "response_generated": true,
+      "entities_extracted": false,
+      "sentiment_analyzed": true,
+      "status": "FAIL"
+    },
+    {
+      "test_id": "NLP_09",
+      "description": "Unknown intent handling",
+      "input": "asdfghjkl random text",
+      "expected_intent": "unknown",
+      "actual_intent": "unknown",
+      "confidence": 0.1,
+      "intent_correct": true,
+      "response_generated": true,
+      "entities_extracted": false,
+      "sentiment_analyzed": true,
+      "status": "FAIL"
+    }
+  ],
+  "api_tests": [
+    {
+      "test_id": "API_01",
+      "name": "Chat Endpoint - POST /api/chat",
+      "method": "POST",
+      "url": "/api/chat",
+      "expected_status": 200,
+      "actual_status": 200,
+      "response_time": 0.01801,
+      "valid_json": true,
+      "status_correct": true,
+      "status": "PASS"
+    },
+    {
+      "test_id": "API_02",
+      "name": "Get Conversations - GET /api/conversations",
+      "method": "GET",
+      "url": "/api/conversations?user_id=1",
+      "expected_status": 200,
+      "actual_status": 200,
+      "response_time": 0.005831,
+      "valid_json": true,
+      "status_correct": true,
+      "status": "PASS"
+    },
+    {
+      "test_id": "API_03",
+      "name": "Get Intents - GET /api/intents",
+      "method": "GET",
+      "url": "/api/intents",
+      "expected_status": 200,
+      "actual_status": 200,
+      "response_time": 0.001863,
+      "valid_json": true,
+      "status_correct": true,
+      "status": "PASS"
+    },
+    {
+      "test_id": "API_04",
+      "name": "Get Analytics - GET /api/analytics",
+      "method": "GET",
+      "url": "/api/analytics?user_id=1",
+      "expected_status": 200,
+      "actual_status": 200,
+      "response_time": 0.004306,
+      "valid_json": true,
+      "status_correct": true,
+      "status": "PASS"
+    }
+  ],
+  "performance_tests": [
+    {
+      "nlp_processing": {
+        "average_time": 0.0055890679359436035,
+        "max_time": 0.005814552307128906,
+        "samples": 4,
+        "meets_requirement": true
+      },
+      "api_response": {
+        "average_time": 0.013677740097045898,
+        "samples": 5,
+        "meets_requirement": true
+      }
+    }
+  ],
+  "integration_tests": [
+    {
+      "scenario_name": "Complete Conversation Flow",
+      "session_id": "integration_test_1757664535",
+      "steps": [
+        {
+          "step": 1,
+          "message": "Hello",
+          "response": "Greetings! I'm ready to assist you with your tasks and productivity needs.",
+          "intent": "greeting",
+          "confidence": 0.3,
+          "success": true
+        },
+        {
+          "step": 2,
+          "message": "Create a task to prepare presentation",
+          "response": "Perfect! I'll help you create a task. What's the task description?",
+          "intent": "task_creation",
+          "confidence": 0.78,
+          "success": true
+        },
+        {
+          "step": 3,
+          "message": "Schedule a meeting tomorrow at 10 AM",
+          "response": "I can help you schedule a meeting! When would you like to meet and with whom?",
+          "intent": "schedule_meeting",
+          "confidence": 0.825,
+          "success": true
+        },
+        {
+          "step": 4,
+          "message": "Give me productivity tips",
+          "response": "For better productivity: Start with your most important task, minimize multitasking, use productivity apps for tracking, and maintain a consistent daily routine.",
+          "intent": "productivity_tips",
+          "confidence": 0.8571428571428571,
+          "success": true
+        },
+        {
+          "step": 5,
+          "message": "Goodbye",
+          "response": "I'm doing great and excited to help you achieve your productivity goals!",
+          "intent": "status_check",
+          "confidence": 0.3428571428571428,
+          "success": true
+        }
+      ],
+      "success_rate": 1.0,
+      "status": "PASS"
+    }
+  ],
+  "summary": {
+    "nlp_tests": {
+      "passed": 5,
+      "total": 9,
+      "success_rate": 0.5555555555555556
+    },
+    "api_tests": {
+      "passed": 4,
+      "total": 4,
+      "success_rate": 1.0
+    },
+    "integration_tests": {
+      "passed": 1,
+      "total": 1,
+      "success_rate": 1.0
+    },
+    "performance": {
+      "nlp_performance_ok": true,
+      "api_performance_ok": true
+    },
+    "overall_status": "FAIL"
+  }
+}
